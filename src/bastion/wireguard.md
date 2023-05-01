@@ -1,6 +1,6 @@
-# WireGuard
+# Bastion
 
-## Bastion
+## Wireguard
 
 Installer les outils wireguard de l'espace utilisateur :
 ```bash,ignore

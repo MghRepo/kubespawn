@@ -1,4 +1,4 @@
-# Machine bastion
+# Bastion
 
 ## Introduction
 

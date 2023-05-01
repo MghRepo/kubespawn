@@ -1,3 +1,5 @@
+# Machine d'infrastructure
+
 ## Configuration
 
 ### Réseau

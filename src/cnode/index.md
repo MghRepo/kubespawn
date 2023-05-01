@@ -1,4 +1,4 @@
-# Machine cnode
+# Cnode
 
 ## Introduction
 

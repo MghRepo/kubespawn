@@ -1,1 +1,3 @@
-# Installation
+# Cnode
+
+## Installation

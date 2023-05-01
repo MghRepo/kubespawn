@@ -1,3 +1,5 @@
+# Machine d'infrastructure
+
 ## Shorewall
 
 Shorewall est un outil de haut niveau pour configurer Netfilter.

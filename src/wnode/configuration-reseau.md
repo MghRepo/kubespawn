@@ -1,4 +1,4 @@
-# Machine wnode
+# Wnode
 
 ## Configuration réseau
 
