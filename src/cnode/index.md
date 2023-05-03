@@ -9,4 +9,16 @@ les éléments suivants :
 * Etcd
 * Kube-scheduler
 * Kube-controller-manager
-* Cloud-controller-manager
+
+Renseigner le nom d'hôte :
+
+```bash,ignore
+$ sudo machinectl login cnode
+$ sudo hostnamectl set-hostname cnode
+```
+
+Côté hôte, limiter l'utilisation des ressources du conteneur :
+```bash,ignore
+$ sudo systemctl set-property systemd-nspawn@cnode MemoryHigh=4G
+$ sudo systemctl set-property systemd-nspawn@cnode CPUQuota=200%
+```

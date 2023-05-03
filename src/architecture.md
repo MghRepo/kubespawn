@@ -18,6 +18,7 @@ L'architecture principale du projet comprend **4 machines** :
     + Un noeud Kubernetes
     + Podman
     + Crun
+    + CRI-O
 
 Un **switch virtuel Open vSwitch** et **3 réseaux** :
 

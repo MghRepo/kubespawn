@@ -1,3 +1,7 @@
+# Bastion
+
+## Systemd-homed
+
 ### Stockage LUKS
 
 Le mécanisme de chiffrement du home *LUKS* n'est pas supporté dans *systemd-nspawn*.

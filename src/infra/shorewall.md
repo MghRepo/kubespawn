@@ -10,6 +10,11 @@ Shorewall lit ses fichiers de configuration et configure Nefilter selon la descr
 > **Remarque** : Shorewall n'utilise pas le mode compatible *ipchains* mais il utilise
   avantageusement les possibilités de pistage des états de connexion Netfilter.
 
+Installer le pare-feux :
+```bash,ignore
+$ sudo dnf install shorewall
+```
+
 ### Zones
 
 Renseigner les zones *fw*, *Z3* et *Z4* dans le fichier */etc/shorewall/zones* :

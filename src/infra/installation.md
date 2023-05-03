@@ -1,3 +1,0 @@
-# Machine d'infrastructure
-
-## Installation

@@ -10,3 +10,16 @@ Le wnode est le noeud de la grappe *Kubernetes* qui execute les pods. Il compren
 * Kubelet
 * Kube-proxy
 * CRI-O
+
+Renseigner le nom d'hôte :
+
+```bash,ignore
+$ sudo machinectl login wnode
+$ sudo hostnamectl set-hostname wnode
+```
+
+Côté hôte, limiter l'utilisation des ressources du conteneur :
+```bash,ignore
+$ sudo systemctl set-property systemd-nspawn@wnode MemoryHigh=2G
+$ sudo systemctl set-property systemd-nspawn@wnode CPUQuota=100%
+```

@@ -1,3 +1,7 @@
+# Bastion
+
+## Systemd-homed
+
 ### Homectl
 
 *homectl* est l'outil principal que l'on utilise pour homed. On peut créer, mettre à jour et
@@ -11,7 +15,7 @@ $ homectl create hugo
 
 Cette commandee va créer :
 * un utilisateur,
-* un UID libre (dans les 60001-60513),
+* un UID libre (dans les 60001 : 60513),
 * créer un groupe avec le même nom et un GID égal à l'UID choisi et ajouter l'utilisateur spécifié
   comme membre,
 * renseigner le shell par défaut de l'utilisateur à */bin/bash*.
