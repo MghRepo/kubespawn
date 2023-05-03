@@ -1,5 +1,7 @@
 # Architecture du projet
 
+## Introduction
+
 L'architecture principale du projet comprend **4 machines** :
 * Un **bastion** comprenant :
     + Un accés au WAN de la zone agent

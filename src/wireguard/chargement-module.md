@@ -1,7 +1,6 @@
-# WireGuard
+# Wireguard
 
-Wireguard est un logiciel d'accés VPN pair à pair extrêmement simple et performant. Il a été inclus
-dans le noyau Linux 5.6 en mars 2020.
+## Chargement du module
 
 Pour pouvoir utiliser un module du noyau dans les conteneurs, il est nécessaire des le charger au
 niveau de l'hôte :

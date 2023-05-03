@@ -6,8 +6,8 @@ Les conteneurs situés dans **/var/lib/machines/** peuvent être contrôlés par
 **machinectl** qui contrôle en interne les instances des unités de service
 **systemd-nspawn@nomConteneur**.
 
-Les sous répertoires correspondent aux noms des conteneurs c'est à dire :
-*/var/lib/machines/nomConteneur/*.
+> **Remarque** : Les sous répertoires correspondent aux noms des conteneurs c'est à dire :
+  */var/lib/machines/nomConteneur/*.
 
 ### Chaîne d'outils systemd
 

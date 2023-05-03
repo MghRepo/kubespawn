@@ -27,5 +27,5 @@ dans cet ordre :
 2. **Sous-volume** si LUKS n'est pas supporté et sous-volume est supporté;
 3. **Répertoire** si aucun de ceux-ci n'est supporté.
 
-> Remarque : le chemin de l'image pour le mécanisme LUKS est */home/hugo.home* et le chemin du
+> **Remarque** : le chemin de l'image pour le mécanisme LUKS est */home/hugo.home* et le chemin du
   répertoire pour le mécanisme répertoire est */home/hugo/home.dir*.

@@ -18,3 +18,6 @@ Les usages de systemd-nspawn peuvent être multiples tels que :
 Mais systemd-nspawn retient également les avantages de la conteneurisation tels que :
 * Portabilité
 * Scalabilité
+
+Tout en conservant une relative simplicité de mise en oeuvre en comparaison d'autres types de
+conteneurisation (LXC, Docker, Podman etc.).

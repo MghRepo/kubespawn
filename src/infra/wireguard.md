@@ -26,8 +26,8 @@ PrivateKey = eHGRDsCibdQw+htxJYnLy2bcJIt7ATXFnlqrD7oqzEs=
 Address = 172.30.18.1/24
 ListenPort = 41740
 
-PreUp = sysctl -w net.ipv4.ip_forward=1
-PostDown = sysctl -w net.ipv4.ip_forward=0
+PostUp = sysctl -w net.ipv4.ip_forward=1
+PreDown = sysctl -w net.ipv4.ip_forward=0
 
 [Peer]
 PublicKey = uq75eVp7ezfchZBgYPbp3267vzVOUf4IWBqZzV/kqhA=
