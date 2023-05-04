@@ -14,7 +14,7 @@ $ wg genkey | (umask 0077 && tee bastion.key) | wg pubkey > bastion.pub
 
 Créer une interface de type wireguard :
 ```bash,ignore
-$ ip link add wg0 type wireguard
+$ sudo ip link add wg0 type wireguard
 ```
 
 Récupérer et copier la clef publique de *infra* (optionnellement également, la clef *preshared*).

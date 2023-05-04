@@ -2,8 +2,8 @@
 
 ## Chargement du module
 
-Pour pouvoir utiliser un module du noyau dans les conteneurs, il est nécessaire des le charger au
-niveau de l'hôte :
+Pour pouvoir utiliser un module du noyau dans les conteneurs, il est nécessaire de le charger
+préalablement au niveau de l'hôte :
 
 ```bash,ignore
 $ sudo modprobe wireguard

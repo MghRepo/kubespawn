@@ -12,5 +12,6 @@ Cette machine utilise la distribution **ArchLinux** qui en plus de m'être famil
 avantage desquels on peut citer :
 
 * Rolling release
+* Communautaire
 * Basée systemd (systemd-homed inclus)
 * Excellente documentation

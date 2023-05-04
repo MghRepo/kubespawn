@@ -12,8 +12,9 @@ sudo systemctl enable systemd-nspawn@wnode
 
 > **Remarque** : Les unités de service *systemd-nspawn@* font partie de la cible spéciale systemd
   *machines.target* (pour en savoir plus sur les cibles spéciales fournies *man systemd.special*).
-  Le service *ovsdb-server* (qui est lié à *ovs-vswitchd*) et la cible *machines.target* faisant
-  partie de la *multi-user.target*, il peut être utile (mais pas obligatoire) de placer une
-  dépendance d'ordonnancement (*After=*) du service vis à vis de *machines.target*.
+  Il est possible (mais pas forcément nécessaire) de modifier les dépendances fonctionnelles
+  (*Wants=* et *Requires=*) et d'ordonnancement (*After*=) du service *ovs-vswitchd* et copiant le
+  fichier d'unité dans */etc/systemd/system/* afin de le lier à la cible *machines.target* (pour en
+  savoir plus sur la rédaction de fichiers d'unités *man systemd.unit*).
 
 La plateforme est maintenant opérationnelle.

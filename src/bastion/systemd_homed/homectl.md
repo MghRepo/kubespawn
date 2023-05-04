@@ -5,7 +5,7 @@
 ### Homectl
 
 *homectl* est l'outil principal que l'on utilise pour homed. On peut créer, mettre à jour et
-inspecter des utilisateur, leurs répertoires home, et leurs fichier *~/.indentity* contrôlés par le
+inspecter des utilisateur, leurs répertoires home, et leurs fichier *~/.identity* contrôlés par le
 service *systemd-homed*.
 
 Afin de créer l'utilisateur du *bastion* :

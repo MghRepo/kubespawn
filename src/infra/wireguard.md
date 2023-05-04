@@ -9,12 +9,12 @@ $ sudo dnf install wireguard-tools
 
 Générer une paire de clefs (publique/privée) :
 ```bash,ignore
-$ wg genkey | (umask 0077 && tee bastion.key) | wg pubkey > bastion.pub
+$ wg genkey | (umask 0077 && tee infra.key) | wg pubkey > infra.pub
 ```
 
 Créer une interface de type wireguard :
 ```bash,ignore
-$ ip link add wg0 type wireguard
+$ sudo ip link add wg0 type wireguard
 ```
 
 Récupérer et copier la clef publique de *bastion* (optionnellement également, la clef *preshared*).
