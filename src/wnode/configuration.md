@@ -2,6 +2,18 @@
 
 ## Configuration
 
+### Nspawn
+
+Pour rajouter le lien ethernet virtuel pour les réseaux admin et data, on créé le
+fichier */etc/systemd/nspawn/wnode.nspawn* suivant:
+```ini,ignore
+[Network]
+Private=yes
+VirtualEthernet=yes
+VirtualEthernetExtra=ve-wnode_admin0:admin0
+VirtualEthernetExtra=ve-wnode_data0:data0
+```
+
 ### Réseau
 
 Afin de configurer le côté hôte du lien admin, on créé le fichier *70-wnode-ve_admin0.network* :
@@ -41,15 +53,3 @@ et ajouter la route vers l'accés VPN infra :
 |  Destination   |     Saut     |
 |----------------|--------------|
 | 172.30.18.0/24 | 172.16.18.11 |
-
-### Nspawn
-
-Enfin et afin de rajouter le lien ethernet virtuel pour les réseaux admin et data, on créé le
-fichier */etc/systemd/nspawn/wnode.nspawn* suivant:
-```ini,ignore
-[Network]
-Private=yes
-VirtualEthernet=yes
-VirtualEthernetExtra=ve-wnode_admin0:admin0
-VirtualEthernetExtra=ve-wnode_data0:data0
-```

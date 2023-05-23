@@ -27,6 +27,6 @@ $ sudo systemctl set-property systemd-nspawn@bastion MemoryHigh=2G
 $ sudo systemctl set-property systemd-nspawn@bastion CPUQuota=100%
 ```
 
-> **Remarque** : ArchLinux utilise le module *securetty* afin de limiter les connexion du
+> **Remarque** : ArchLinux utilise le module pam *securetty* afin de limiter les connexion du
   superutilisateur. Pour que le login root fonctionne il est necéssaire d'ajouter *pts/1* au fichier
   */etc/securetty*.

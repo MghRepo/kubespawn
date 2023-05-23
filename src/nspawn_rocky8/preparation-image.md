@@ -38,5 +38,5 @@ $ setcap cap_net_raw+pe /bin/ping
 $ poweroff
 ```
 
-> Remarque : À partir de maintenant pour les sous-commandes *machinectl login* et *machinectl shell*
- on s'authentifiera avec l'utilisateur *cloudadm*.
+> **Remarque** : À partir de maintenant pour les sous-commandes *machinectl login* et *machinectl
+  shell* on s'authentifiera avec l'utilisateur *cloudadm*.

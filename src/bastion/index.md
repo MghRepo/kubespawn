@@ -9,7 +9,7 @@ Afin d'assurer la sécurité du poste il doit comprendre à minima les élément
 * Chiffrement
 
 Cette machine utilise la distribution **ArchLinux** qui en plus de m'être familiaire a de nombreux
-avantage desquels on peut citer :
+avantages desquels on peut citer :
 
 * Rolling release
 * Communautaire

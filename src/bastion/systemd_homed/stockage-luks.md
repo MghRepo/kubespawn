@@ -6,7 +6,7 @@
 
 Le mécanisme de chiffrement du home *LUKS* n'est pas supporté dans *systemd-nspawn*.
 ```bash,ignore
-$ sudo homectl create hugo --storage=luks
+$ homectl create hugo --storage=luks
 ```
 
 Avec cette option *systemd-homed* créé un fichier auxquel il attache une interface de périphérique

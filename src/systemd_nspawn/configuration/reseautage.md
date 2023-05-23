@@ -83,5 +83,5 @@ UseTimezone=yes
 
 > **Remarque** : Lorsqu'on examine les interfaces avec *ip link*, les noms d'interfaces affichent un
   suffixe, tel que *ve-nomconteneur@if2* et *host0@if9*. Le *@ifN* ne complète pas en réalité le nom
-  de l'interface, *ip link* ajoute cette information pour indique à quel slot est connecté le câble
+  de l'interface, *ip link* ajoute cette information pour indiquer à quel slot est connecté le câble
   ethernet virtuel à l'autre bout.

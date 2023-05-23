@@ -5,8 +5,7 @@
 Installation des outils de conteneurisation :
 ```bash,ignore
 $ sudo dnf module install container-tools
-$ sudo dnf install podman
-$ sudo dnf install crun
+$ sudo dnf install podman crun
 ```
 
 Récupérer l'image du conteneur UBI :
