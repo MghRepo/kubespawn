@@ -8,7 +8,7 @@ dans le noyau Linux 5.6 en mars 2020.
 ### Performance
 
 Comparaison du débit :
-![Débit WireGuard](/images/wg_debit.webp)
+![Débit WireGuard](/.images/wg_debit.webp)
 
 Comparaison du ping :
-![Ping WireGuard](/images/wg_ping.webp)
+![Ping WireGuard](/.images/wg_ping.webp)
