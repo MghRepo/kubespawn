@@ -26,7 +26,6 @@ voici une liste non exhaustive :
 - *Wireguard* : Accès sécurisé VPN pair à pair *infra*/*bastion* (module noyau)
 - *Shorewall* : Pare-feux *infra*
 - *Buildah et skopeo* : Gestion des images de conteneurs
-- *Kubernetes* : Orchestration des conteneurs
 - *CRI-O* : Implémentation CRI Kubernetes pour conteneurs OCI
 - *Crun* : Runtime légère création et exécution de conteneurs
 - *UBI* : Image de base universelle redhat (microdnf et SELinux)

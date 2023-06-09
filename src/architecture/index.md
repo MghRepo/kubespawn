@@ -22,7 +22,7 @@ L'architecture principale du projet comprend **4 machines** :
     + Crun
     + CRI-O
 
-Un **switch virtuel Open vSwitch** et **3 réseaux** :
+Un **commutateur réseau virtuel Open vSwitch** et **3 réseaux** :
 
 * **wana** : le WAN agent
 * **admin** : l'administration de la grappe
