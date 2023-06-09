@@ -19,6 +19,7 @@ voici une liste non exhaustive :
 
 - *Arch Linux* : Système hôte + *bastion*
 - *Rocky8 minimal* : *Infra* + *cnode* + *wnode*
+- *Open vSwitch* : Commutateur réseau virtuel
 - *Systemd-networkd* : Réseautage Arch Linux
 - *NetworkManager* : Réseautage Rocky
 - *Systemd-homed* : Gestion du home utilisateur *bastion*
