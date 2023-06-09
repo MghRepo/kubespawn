@@ -17,6 +17,7 @@ echo "====> Copie worktree gh-pages"
 cp -rp book/* "$1"
 echo "====> Déploiement sur github"
 cd "$1"
+find . -name '*.html' -exec sed -i 's/\.images/kubespawn\/\.images/' {} \;
 git update-ref -d refs/heads/gh-pages
 git add -A
 git commit -m "déployé le $(date) par ${USER}"
