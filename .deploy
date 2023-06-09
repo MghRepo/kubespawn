@@ -15,9 +15,11 @@ echo "====> Test et build"
 mdbook clean && mdbook build
 echo "====> Copie worktree gh-pages"
 cp -rp book/* "$1"
+cp -rp book/.* "$1"
 echo "====> Déploiement sur github"
 cd "$1"
 find . -name '*.html' -exec sed -i 's/\.images/kubespawn\/\.images/' {} \;
+find . -name '*.html' -exec sed -i 's/\.fichiers/kubespawn\/\.fichiers/' {} \;
 git update-ref -d refs/heads/gh-pages
 git add -A
 git commit -m "déployé le $(date) par ${USER}"
