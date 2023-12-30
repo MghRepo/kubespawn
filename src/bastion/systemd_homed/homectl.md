@@ -13,7 +13,7 @@ Afin de créer l'utilisateur du *bastion* :
 $ homectl create hugo
 ```
 
-Cette commandee va créer :
+Cette commande va créer :
 * un utilisateur,
 * un UID libre (dans les 60001 : 60513),
 * créer un groupe avec le même nom et un GID égal à l'UID choisi et ajouter l'utilisateur spécifié
