@@ -1,0 +1,1348 @@
+<!DOCTYPE HTML>
+<html lang="fr" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Kubespawn</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="preface.html"><strong aria-hidden="true">1.</strong> Préface</a></li><li class="chapter-item expanded "><a href="architecture/index.html"><strong aria-hidden="true">2.</strong> Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="architecture/reseautage.html"><strong aria-hidden="true">2.1.</strong> Réseautage</a></li></ol></li><li class="chapter-item expanded "><a href="systemd_nspawn/index.html"><strong aria-hidden="true">3.</strong> Systemd-nspawn</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="systemd_nspawn/gestion.html"><strong aria-hidden="true">3.1.</strong> Gestion</a></li><li class="chapter-item expanded "><a href="systemd_nspawn/configuration/index.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="systemd_nspawn/configuration/controle-ressources.html"><strong aria-hidden="true">3.2.1.</strong> Contrôle des ressources</a></li><li class="chapter-item expanded "><a href="systemd_nspawn/configuration/reseautage.html"><strong aria-hidden="true">3.2.2.</strong> Réseautage</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="nspawn_rocky8/index.html"><strong aria-hidden="true">4.</strong> Nspawn Rocky8</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="nspawn_rocky8/preparation-image.html"><strong aria-hidden="true">4.1.</strong> Préparation de l'image</a></li><li class="chapter-item expanded "><a href="nspawn_rocky8/construction-deploiement.html"><strong aria-hidden="true">4.2.</strong> Construction de l'image et déploiement</a></li></ol></li><li class="chapter-item expanded "><a href="wireguard/index.html"><strong aria-hidden="true">5.</strong> WireGuard</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wireguard/chargement-module.html"><strong aria-hidden="true">5.1.</strong> Chargement du module</a></li></ol></li><li class="chapter-item expanded "><a href="bastion/index.html"><strong aria-hidden="true">6.</strong> Machine Bastion</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bastion/installation.html"><strong aria-hidden="true">6.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="bastion/systemd_homed/index.html"><strong aria-hidden="true">6.2.</strong> Systemd-homed</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bastion/systemd_homed/homectl.html"><strong aria-hidden="true">6.2.1.</strong> Homectl</a></li><li class="chapter-item expanded "><a href="bastion/systemd_homed/stockage-luks.html"><strong aria-hidden="true">6.2.2.</strong> Stockage LUKS</a></li></ol></li><li class="chapter-item expanded "><a href="bastion/administration.html"><strong aria-hidden="true">6.3.</strong> Administration</a></li><li class="chapter-item expanded "><a href="bastion/configuration.html"><strong aria-hidden="true">6.4.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="bastion/wireguard.html"><strong aria-hidden="true">6.5.</strong> WireGuard</a></li><li class="chapter-item expanded "><a href="bastion/nftables.html"><strong aria-hidden="true">6.6.</strong> Nftables</a></li></ol></li><li class="chapter-item expanded "><a href="infra/index.html"><strong aria-hidden="true">7.</strong> Machine d'infrastructure</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="infra/configuration.html"><strong aria-hidden="true">7.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="infra/wireguard.html"><strong aria-hidden="true">7.2.</strong> WireGuard</a></li><li class="chapter-item expanded "><a href="infra/shorewall.html"><strong aria-hidden="true">7.3.</strong> Shorewall</a></li></ol></li><li class="chapter-item expanded "><a href="cnode/index.html"><strong aria-hidden="true">8.</strong> Machine cnode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cnode/configuration.html"><strong aria-hidden="true">8.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="cnode/kubernetes.html"><strong aria-hidden="true">8.2.</strong> Kubernetes</a></li></ol></li><li class="chapter-item expanded "><a href="wnode/index.html"><strong aria-hidden="true">9.</strong> Machine wnode</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wnode/configuration.html"><strong aria-hidden="true">9.1.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="wnode/podman-crun.html"><strong aria-hidden="true">9.2.</strong> Podman et Crun</a></li><li class="chapter-item expanded "><a href="wnode/cri-o.html"><strong aria-hidden="true">9.3.</strong> CRI-O</a></li></ol></li><li class="chapter-item expanded "><a href="open_vswitch/index.html"><strong aria-hidden="true">10.</strong> Open vSwitch</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="open_vswitch/ponts-et-interfaces.html"><strong aria-hidden="true">10.1.</strong> Création des ponts et connexion des interfaces</a></li><li class="chapter-item expanded "><a href="open_vswitch/activation-conteneurs.html"><strong aria-hidden="true">10.2.</strong> Activation des conteneurs</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Kubespawn</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="préface"><a class="header" href="#préface">Préface</a></h1>
+<p>La <strong>conteneurisation</strong> est une technologie open source qui permet d'emballer et de fournir des
+applications. Elle permet de combiner une <strong>isolation logicielle</strong> avec la flexibilité des méthodes
+de <strong>déploiement basées sur des images</strong>. Elle utilise un certain nombre de fonctionnalités du noyau
+Linux dont notamment les <strong>cgroups</strong> et les <strong>espaces de noms</strong> mais également le mécanisme de
+<strong>capabilities</strong>.</p>
+<p>Ce projet s'intéresse à deux types de conteneurisation :</p>
+<ul>
+<li><strong>systemd-nspawn</strong> conteneurisation légère systemd</li>
+<li><strong>podman</strong> un outil daemonless.</li>
+</ul>
+<p>Et également à <strong>l'orchestration</strong> (c'est à dire au déploiement à l'organisation
+et à l'exécution) de ses conteneurs pour la <strong>production de services applicatifs</strong>. Le composant
+d'orchestration utilisé dans ce projet s'appelle <strong>Kubernetes</strong>.</p>
+<p>Un certain nombre d'autres composants ont aussi été nécessaires à la mise en œuvre de ce projet dont
+voici une liste non exhaustive :</p>
+<ul>
+<li><em>Arch Linux</em> : Système hôte + <em>bastion</em></li>
+<li><em>Rocky8 minimal</em> : <em>Infra</em> + <em>cnode</em> + <em>wnode</em></li>
+<li><em>Open vSwitch</em> : Commutateur réseau virtuel</li>
+<li><em>Systemd-networkd</em> : Réseautage Arch Linux</li>
+<li><em>NetworkManager</em> : Réseautage Rocky</li>
+<li><em>Systemd-homed</em> : Gestion du home utilisateur <em>bastion</em></li>
+<li><em>Wireguard</em> : Accès sécurisé VPN pair à pair <em>infra</em>/<em>bastion</em> (module noyau)</li>
+<li><em>Shorewall</em> : Pare-feux <em>infra</em></li>
+<li><em>Buildah et skopeo</em> : Gestion des images de conteneurs</li>
+<li><em>CRI-O</em> : Implémentation CRI Kubernetes pour conteneurs OCI</li>
+<li><em>Crun</em> : Runtime légère création et exécution de conteneurs</li>
+<li><em>UBI</em> : Image de base universelle redhat (microdnf et SELinux)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="architecture-du-projet"><a class="header" href="#architecture-du-projet">Architecture du projet</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>L'architecture principale du projet comprend <strong>4 machines</strong> :</p>
+<ul>
+<li>Un <strong>bastion</strong> comprenant :
+<ul>
+<li>Un accés au WAN de la zone agent</li>
+<li>Un accés VPN pair à pair avec la machine d'infra</li>
+<li>Un pare-feux</li>
+<li>Un client SSH</li>
+</ul>
+</li>
+<li>Une machine d'<strong>infra</strong>structure comprenant :
+<ul>
+<li>Un accés VPN pair à pair avec des postes bastions via le WAN agent</li>
+<li>Un accés au réseau d'administration de la grappe <em>Kubernetes</em></li>
+<li>Un pare-feux</li>
+</ul>
+</li>
+<li>Un <strong>cnode</strong> comprenant :
+<ul>
+<li>Un serveur SSH</li>
+<li>Un plan de contrôle Kubernetes</li>
+</ul>
+</li>
+<li>Un <strong>wnode</strong> comprenant :
+<ul>
+<li>Un serveur SSH</li>
+<li>Un noeud Kubernetes</li>
+<li>Podman</li>
+<li>Crun</li>
+<li>CRI-O</li>
+</ul>
+</li>
+</ul>
+<p>Un <strong>commutateur réseau virtuel Open vSwitch</strong> et <strong>3 réseaux</strong> :</p>
+<ul>
+<li><strong>wana</strong> : le WAN agent</li>
+<li><strong>admin</strong> : l'administration de la grappe</li>
+<li><strong>data</strong> : la communication entre plan de contrôle et noeuds</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="architecture"><a class="header" href="#architecture">Architecture</a></h1>
+<h2 id="réseautage"><a class="header" href="#réseautage">Réseautage</a></h2>
+<h3 id="systemd-nspawn"><a class="header" href="#systemd-nspawn">Systemd-nspawn</a></h3>
+<table style="text-align:center">
+    <thead>
+        <tr><th>Machine</th><th>Interface conteneur (⇔ hôte)</th><th>Type</th><th>Adressage</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2>Bastion</td>
+            <td style="color:#04060a;background-color:#d43f3f">wana0 ⇔ ve-basti_wana0</td>
+            <td style="color:#04060a;background-color:#d43f3f">veth</td>
+            <td style="color:#04060a;background-color:#d43f3f">10.0.0.2 ⇔ 12/8</td>
+        </tr>
+        <tr>
+            <td>wg0</td>
+            <td>wireguard</td>
+            <td>172.30.18.101/24</td>
+        </tr>
+        <tr>
+            <td rowspan=3>Infra</td>
+            <td style="color:#04060a;background-color:#b3bf3b">admin0 ⇔ ve-infra_admin0</td>
+            <td style="color:#04060a;background-color:#b3bf3b">veth</td>
+            <td style="color:#04060a;background-color:#b3bf3b">172.16.18.11 ⇔ 21/24</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#d43f3f">wana0 ⇔ ve-infra_wana0</td>
+            <td style="color:#04060a;background-color:#d43f3f">veth</td>
+            <td style="color:#04060a;background-color:#d43f3f">10.0.0.1 ⇔ 11/8</td>
+        </tr>
+        <tr>
+            <td>wg0</td>
+            <td>wireguard</td>
+            <td>172.30.18.1/24</td>
+        </tr>
+        <tr>
+            <td rowspan=2>Cnode</td>
+            <td style="color:#04060a;background-color:#b3bf3b">admin0 ⇔ ve-cnode_admin0</td>
+            <td style="color:#04060a;background-color:#b3bf3b">veth</td>
+            <td style="color:#04060a;background-color:#b3bf3b">172.16.18.12 ⇔ 22/24</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#69a1cf">data0 ⇔ ve-cnode_data0</td>
+            <td style="color:#04060a;background-color:#69a1cf">veth</td>
+            <td style="color:#04060a;background-color:#69a1cf">172.20.18.12 ⇔ 22/24</td>
+        </tr>
+        <tr>
+            <td rowspan=2>Wnode</td>
+            <td style="color:#04060a;background-color:#b3bf3b">admin0 ⇔ ve-wnode_admin0</td>
+            <td style="color:#04060a;background-color:#b3bf3b">veth</td>
+            <td style="color:#04060a;background-color:#b3bf3b">172.16.18.13 ⇔ 23/24</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#69a1cf">data0 ⇔ ve-wnode_data0</td>
+            <td style="color:#04060a;background-color:#69a1cf">veth</td>
+            <td style="color:#04060a;background-color:#69a1cf">172.20.18.13 ⇔ 23/24</td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="open-vswitch"><a class="header" href="#open-vswitch">Open vSwitch</a></h3>
+<table style="text-align:center">
+    <thead>
+        <tr><th>Pont</th><th>Interface</th><th>Machine</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="color:#04060a;background-color:#d43f3f" rowspan=2>br-wana</td>
+            <td style="color:#04060a;background-color:#d43f3f">ve-basti_wana0</td>
+            <td>Bastion</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#d43f3f">ve-infra_wana0</td>
+            <td rowspan=2>Infra</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#b3bf3b" rowspan=3>br-admin</td>
+            <td style="color:#04060a;background-color:#b3bf3b">ve-infra_admin0</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#b3bf3b">ve-cnode_admin0</td>
+            <td rowspan=4>Cnode et Wnode</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#b3bf3b">ve-wnode_admin0</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#69a1cf" rowspan=2>br-data</td>
+            <td style="color:#04060a;background-color:#69a1cf">ve-cnode_data0</td>
+        </tr>
+        <tr>
+            <td style="color:#04060a;background-color:#69a1cf">ve-wnode_data0</td>
+        </tr>
+    </tbody>
+</table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="systemd-nspawn-1"><a class="header" href="#systemd-nspawn-1">Systemd-nspawn</a></h1>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<p>Systemd-nspawn virtualise la hiérarchie du système de fichier, l'arbre des processus, les différents
+sous-systèmes IPC ainsi que les noms de domaine et d'hôte.</p>
+<p>Systemd-nspawn peut être invoqué sur n'importe quel répertoire de l'arborescence contenant un arbre
+de système d'exploitation.</p>
+<p>A l'instar de chroot, systemd-nspawn peut être utilisé pour faire fonctionner des systèmes
+d'exploitation Linux dans un conteneur.</p>
+<p>Les usages de systemd-nspawn peuvent être multiples tels que :</p>
+<ul>
+<li>Créer des paquets d'autres distributions.</li>
+<li>Exécuter des applicatifs sensibles dans un environnement isolé.</li>
+</ul>
+<p>Mais systemd-nspawn retient également les avantages de la conteneurisation tels que :</p>
+<ul>
+<li>Portabilité</li>
+<li>Scalabilité</li>
+</ul>
+<p>Tout en conservant une relative simplicité de mise en oeuvre en comparaison d'autres types de
+conteneurisation (LXC, Docker, Podman etc.).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="systemd-nspawn-2"><a class="header" href="#systemd-nspawn-2">Systemd-nspawn</a></h1>
+<h2 id="gestion"><a class="header" href="#gestion">Gestion</a></h2>
+<p>Les conteneurs situés dans <strong>/var/lib/machines/</strong> peuvent être contrôlés par la commande
+<strong>machinectl</strong> qui contrôle en interne les instances des unités de service
+<strong>systemd-nspawn@nomConteneur</strong>.</p>
+<blockquote>
+<p><strong>Remarque</strong> : Les sous répertoires correspondent aux noms des conteneurs c'est à dire :
+<em>/var/lib/machines/nomConteneur/</em>.</p>
+</blockquote>
+<h3 id="chaîne-doutils-systemd"><a class="header" href="#chaîne-doutils-systemd">Chaîne d'outils systemd</a></h3>
+<p>Une grande partie de la chaîne d'outils systemd a été adaptée pour fonctionner avec les conteneurs.
+Ces outils fournissent généralement une option <em>-M</em> qui prendra un nom de conteneur en argument :</p>
+<pre><code class="language-bash ignore">$ sudo journalctl -M nomConteneur # Les journals de logs
+$ systemd-cgls -M nomConteneur # Le contenu des cgroups
+$ systemd-analyze -M nomConteneur # Le temps de démarrage
+$ systemd-cgtop # Une vue globale de l'usage des ressources
+</code></pre>
+<h3 id="machinectl"><a class="header" href="#machinectl">Machinectl</a></h3>
+<p>Pour la gestion des conteneurs on utilise la commande <em>machinectl</em>.</p>
+<p><em>machinectl</em> est généralement suffixée d'une sous-commande suivi du nom du conteneur. Par exemple :</p>
+<pre><code class="language-bash ignore">$ machinectl start nomConteneur
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : Les noms de conteneurs ne doivent contenir que des caractères ASCII (pas
+d'underscore).</p>
+</blockquote>
+<p>Les sous-commandes communes sont :</p>
+<ul>
+<li>poweroff - désactiver un ou plusieurs conteneurs</li>
+<li>reboot - redémarrer un ou plusieurs conteneurs</li>
+<li>status - affiche des informations relatives au statut d'exécution d'un ou plusieurs conteneurs</li>
+<li>show - affiche des propriétés du gestionnaire ou d'un ou plusieurs conteneurs</li>
+<li>list - affiche une liste des conteneurs actuellement en exécution</li>
+<li>login <em>nomConteneur</em> - ouvrir une session de connexion interactive</li>
+<li>shell <em>[utilisateur@]nomConteneur</em> - ouvrir une session shell interactive</li>
+<li>enable/disable <em>nomConteneur</em> - activer ou désactiver le service du conteneur.</li>
+</ul>
+<p><em>machinectl</em> a également des commandes pour la gestion des images et des transferts d'images
+(ex. <em>clone</em>).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="systemd-nspawn-3"><a class="header" href="#systemd-nspawn-3">Systemd-nspawn</a></h1>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
+<p>Pour spécifier un paramétrage par conteneur et pas des surcharges globales, le fichier
+<strong>/etc/systemd/nspawn/nomConteneur.nspawn</strong> peut être utilisé.</p>
+<p>Plusieurs sections y sont définies contenant un ensemble de couple clefs-valeurs par exemple :</p>
+<pre><code class="language-ini ignore">[Exec]
+SystemCallFilter=add_key keyctl bpf
+[File]
+Bind=/dev/fuse
+[Network]
+Private=no
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : La configuration ci-dessus expose les appels système <em>add_key</em>, <em>keyctl</em> et <em>bpf</em>
+au conteneur qui ne sont pas contenu dans des espaces de noms. Cela peut représenter un risque de
+sécurité, même si bien moindre que de désactiver entièrement les espaces de noms utilisateurs
+comme ce qui se faisait avant les cgroups v2.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="systemd-nspawn-4"><a class="header" href="#systemd-nspawn-4">Systemd-nspawn</a></h1>
+<h2 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h2>
+<h3 id="contrôle-de-ressource"><a class="header" href="#contrôle-de-ressource">Contrôle de ressource</a></h3>
+<p>On peut utiliser les cgroups afin d'implémenter des limites et des gestions de ressources pour les
+conteneurs avec <em>systemctl set-property</em>. Par exemple :</p>
+<pre><code class="language-bash ignore">$ sudo systemctl set-property systemd-nspawn@nomConteneur DeviceAllow='/dev/fuse rwm'
+$ sudo systemctl set-property systemd-nspawn@nomConteneur MemoryHigh=2G
+$ sudo systemctl set-property systemd-nspawn@nomConteneur CPUQuota=100%
+</code></pre>
+<p>Cela créera des fichiers permanents dans
+<em>/etc/systemd/system.control/systemd-nspawn@container-name.service.d/</em>.</p>
+<blockquote>
+<p>Remarque : <em>MemoryMax</em> impose une limite stricte à l'instar de <em>MemoryHigh</em> qui est à privilégier.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="systemd-nspawn-5"><a class="header" href="#systemd-nspawn-5">Systemd-nspawn</a></h1>
+<h2 id="configuration-2"><a class="header" href="#configuration-2">Configuration</a></h2>
+<h3 id="réseautage-1"><a class="header" href="#réseautage-1">Réseautage</a></h3>
+<p>Les conteneurs <em>systemd-nspawn</em> peuvent utiliser soit le réseautage hôte soit un réseautage privé :</p>
+<ul>
+<li>Dans le <strong>mode hôte</strong>, le conteneur a un accès total au réseau de l'hôte. Cela signifie que le
+conteneur sera capable d'accéder à tous les services réseaux sur l'hôte et que les paquets venant
+du conteneur apparaîtront pour le réseau externe comme venant de l'hôte (même adresse IP).</li>
+<li>Dans le <strong>mode privé</strong>, le conteneur est déconnecté du réseau de l'hôte. Cela rend les interfaces
+réseau de l'hôte indisponibles pour le conteneur :
+<ul>
+<li>Une interface existante peut être assigné au conteneur</li>
+<li>Une interface réseau virtuelle associée à une interface existante (interface VLAN) peut être
+créée et assignée au conteneur</li>
+<li>Un lien Ethernet virtuel entre l'hôte est le conteneur peut être créé.
+Dans le dernier cas le conteneur est complètement isolé (du réseau externe ainsi que des autres
+conteneurs) et nécessite une configuration entre l'hôte et les conteneurs. Généralement cela
+implique des créer des ponts pour connecter les interfaces physique ou virtuelles ou paramétrer le
+NAT entre les multiples interfaces.</li>
+</ul>
+</li>
+</ul>
+<p>Le réseautage hôte est adapté aux <em>conteneurs d'application</em> qui n'exécutent pas de logiciel de
+réseautage qui configure l'interface assignée.</p>
+<p>Le réseautage privé est adapté aux <em>conteneur systèmes</em> qui doivent être isolés du système hôte. La
+création de liens Ethernet virtuels est un outil flexible pour permettre la création de réseaux
+virtuels privés complexes. C'est le mode par défaut pour les conteneurs démarrés via <em>machinectl</em> ou
+<em>systemd-nspawn@.service</em>.</p>
+<h4 id="utiliser-un-lien-ethernet-virtuel"><a class="header" href="#utiliser-un-lien-ethernet-virtuel">Utiliser un lien Ethernet virtuel</a></h4>
+<p>Si un lien virtuel Ethernet est créé entre l'hôte et le conteneur dans le mode réseautage privé :</p>
+<ul>
+<li>Le côté hôte du lien sera disponible comme une interface réseau <em>ve-nomConteneur</em>.</li>
+<li>Le côté conteneur du lien sera nommé <em>host0</em></li>
+</ul>
+<blockquote>
+<p><strong>Remarque</strong> : Les liens Ethernet virtuels sont des &quot;devices&quot;. Ils peuvent agir comme des tunnels
+entre des espaces de noms réseau pour faire un pont entre deux points. Une paire interconnectée
+peut être créée avec la commande <em>ip link add nom-p1 type veth peer name nom-p2</em>.</p>
+</blockquote>
+<p>Quand on démarre le conteneur, une adresse IP doit être assignée aux deux interfaces (sur l'hôte et
+dans le conteneur). Si on utilise <strong>systemd-networkd</strong> cela est réalisé automatiquement, sur l'hôte
+ainsi que dans le conteneur :</p>
+<ul>
+<li>le fichier <em>/usr/lib/systemd/network/80-container-ve.network</em> sur l'hôte vérifie l'interface
+<em>ve-nomConteneur</em> et démarre un serveur DHCP, qui assigne les adresses IP sur l'interface de
+l'hôte.</li>
+<li>le fichier <em>/usr/lib/systemd/network/80-container-host0.network</em> dans le conteneur vérifie
+l'interface <em>host0</em> et démarre un client DHCP, qui reçoit les adresses IP de l'hôte.</li>
+</ul>
+<p><em>80-container-ve.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Name=ve-*
+Driver=veth
+
+[Network]
+# Default to using a /28 prefix, giving up to 13 addresses per container.
+Address=0.0.0.0/28
+LinkLocalAddressing=yes
+DHCPServer=yes
+IPMasquerade=both
+LLDP=yes
+EmitLLDP=customer-bridge
+IPv6SendRA=yes
+</code></pre>
+<p><em>80-container-host0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Virtualization=container
+Name=host0
+
+[Network]
+DHCP=yes
+LinkLocalAddressing=yes
+LLDP=yes
+EmitLLDP=customer-bridge
+
+[DHCP]
+UseTimezone=yes
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : Lorsqu'on examine les interfaces avec <em>ip link</em>, les noms d'interfaces affichent un
+suffixe, tel que <em>ve-nomconteneur@if2</em> et <em>host0@if9</em>. Le <em>@ifN</em> ne complète pas en réalité le nom
+de l'interface, <em>ip link</em> ajoute cette information pour indiquer à quel slot est connecté le câble
+ethernet virtuel à l'autre bout.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nspawn-rocky8"><a class="header" href="#nspawn-rocky8">Nspawn Rocky8</a></h1>
+<h2 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h2>
+<p>Pour créer notre premier conteneur, il existe un hub pour les images de conteneurs légers
+systemd-nspawn <a href="https://nspawn.org">nspawn.org</a>.</p>
+<p>Télécharger l'<a href="https://hub.nspawn.org/storage/rocky/8/tar/image.tar.xz">image rocky8</a>.</p>
+<p>Créer le répertoire du conteneur :</p>
+<pre><code class="language-bash ignore">sudo mkdir /var/lib/machines/rocky8
+</code></pre>
+<p>Extraire l'image dans le répertoire :</p>
+<pre><code class="language-bash ignore">sudo tar -xvf ~/telechargements/image.tar.xz -C /var/lib/machines/rocky8/
+</code></pre>
+<p>Et démarrer le conteneur :</p>
+<pre><code class="language-bash ignore">$ sudo machinectl start rocky8
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nspawn-rocky8-1"><a class="header" href="#nspawn-rocky8-1">Nspawn Rocky8</a></h1>
+<h2 id="préparation-de-limage"><a class="header" href="#préparation-de-limage">Préparation de l'image</a></h2>
+<p>Première connexion :</p>
+<pre><code class="language-bash ignore">$ sudo machinectl shell rocky8
+</code></pre>
+<p>Renseigner la variable d'environnement TERM (le défaut <em>vt220</em> ne convient pas) :</p>
+<pre><code class="language-bash ignore">$ TERM=vt100
+$ echo &quot;TERM=vt100&quot; &gt;/etc/environment
+</code></pre>
+<p>Mettre à jour le système et le mot de passe root :</p>
+<pre><code class="language-bash ignore">$ rpmdb --rebuilddb
+$ dnf update
+$ dnf install passwd
+$ passwd
+</code></pre>
+<p>Installer quelques paquets utiles et créer un utilisateur administrateur <em>cloudadm</em> :</p>
+<pre><code class="language-bash ignore">$ dnf install epel-release
+$ dnf install sudo vim man man-pages htop
+$ dnf install NetworkManager-tui openssh-server openssh-clients rsync
+$ dnf clean all
+$ useradd -m cloudadm
+$ vim /etc/sudoers
+</code></pre>
+<p>Ajouter le groupe <em>cloudadm</em> au groupe des administrateurs.</p>
+<p>Enfin, permettre aux utilisateurs non privilégiés d'utiliser la commande ping et éteindre la machine:</p>
+<pre><code class="language-bash ignore">$ setcap cap_net_raw+pe /bin/ping
+$ poweroff
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : À partir de maintenant pour les sous-commandes <em>machinectl login</em> et <em>machinectl
+shell</em> on s'authentifiera avec l'utilisateur <em>cloudadm</em>.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nspawn-rocky8-2"><a class="header" href="#nspawn-rocky8-2">Nspawn Rocky8</a></h1>
+<h2 id="construction-de-limage-et-déploiement"><a class="header" href="#construction-de-limage-et-déploiement">Construction de l'image et déploiement</a></h2>
+<p>Par la suite on sauvegardera l'image dans l'archive <em>rocky8.tar.xz</em> :</p>
+<pre><code class="language-bash ignore">$ sudo tar -cJvf /var/lib/machines/rocky8.tar.xz -C /var/lib/machines/rocky8/ .
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : Cette opération peut prendre plusieurs minutes.</p>
+</blockquote>
+<p>Par la suite 2 méthodes permettent la création des machines.</p>
+<h3 id="déploiement-de-limage"><a class="header" href="#déploiement-de-limage">Déploiement de l'image</a></h3>
+<p>On pourrait créer les répertoires des machines <em>infra</em>, <em>cnode</em> et <em>wnode</em> :</p>
+<pre><code class="language-bash ignore">$ sudo mkdir /var/lib/machines/{infra,cnode,wnode}
+</code></pre>
+<p>Et copier la machine ou bien encore extraire l'image dans chacun de ces répertoires :</p>
+<pre><code class="language-bash ignore">$ sudo tar -xvf /var/lib/machines/rocky8.tar.xz -C /var/lib/machines/infra/
+$ sudo tar -xvf /var/lib/machines/rocky8.tar.xz -C /var/lib/machines/cnode/
+$ sudo tar -xvf /var/lib/machines/rocky8.tar.xz -C /var/lib/machines/wnode/
+</code></pre>
+<h3 id="clonage-de-la-machine"><a class="header" href="#clonage-de-la-machine">Clonage de la machine</a></h3>
+<p>Une meilleure méthode qui fait usage du système de fichier sous-jacent de l'hôte est de
+simplement cloner la machine <em>rocky8</em>. En effet le système hôte utilise <em>btrfs</em> qui supporte les
+<em>snapshots</em> et les <em>sous-volumes</em> et inclus tous les avantages du <em>copy-on-write</em> :</p>
+<pre><code class="language-bash ignore">$ sudo machinectl clone rocky8 infra
+$ sudo machinectl clone rocky8 cnode
+$ sudo machinectl clone rocky8 wnode
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : Une machine peut également être clonée en <em>read-only</em>.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wireguard"><a class="header" href="#wireguard">WireGuard</a></h1>
+<h2 id="introduction-3"><a class="header" href="#introduction-3">Introduction</a></h2>
+<p>Wireguard est un logiciel d'accés VPN pair à pair extrêmement simple et performant. Il a été inclus
+dans le noyau Linux 5.6 en mars 2020.</p>
+<h3 id="performance"><a class="header" href="#performance">Performance</a></h3>
+<p>Comparaison du débit :
+<img src="wireguard//kubespawn/.images/wg_debit.webp" alt="Débit WireGuard" /></p>
+<p>Comparaison du ping :
+<img src="wireguard//kubespawn/.images/wg_ping.webp" alt="Ping WireGuard" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wireguard-1"><a class="header" href="#wireguard-1">Wireguard</a></h1>
+<h2 id="chargement-du-module"><a class="header" href="#chargement-du-module">Chargement du module</a></h2>
+<p>Pour pouvoir utiliser un module du noyau dans les conteneurs, il est nécessaire de le charger
+préalablement au niveau de l'hôte :</p>
+<pre><code class="language-bash ignore">$ sudo modprobe wireguard
+</code></pre>
+<p>Afin de ne pas avoir à recharger le module à chaque redémarrage de l'hôte, on pourra l'inclure dans
+les images initramfs. De multiples outils permettent la construction des initramfs :</p>
+<ul>
+<li><strong>mkinitcpio</strong></li>
+<li><strong>dracut</strong></li>
+<li><strong>booster</strong></li>
+</ul>
+<p>ArchLinux utilise <strong>mkinitcpio</strong> par défaut.</p>
+<p>Éditer le fichier <em>/etc/mkinitcpio.conf</em> et ajouter le module wireguard :</p>
+<pre><code class="language-bash ignore">modules=(wireguard)
+</code></pre>
+<p>Puis reconstruire les initramfs :</p>
+<pre><code class="language-bash ignore">$ sudo mkinitcpio -P
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion"><a class="header" href="#bastion">Bastion</a></h1>
+<h2 id="introduction-4"><a class="header" href="#introduction-4">Introduction</a></h2>
+<p>Le poste <em>bastion</em> est un poste agent, situé en <strong>zone agent (ZA)</strong> avec un accès au WAN agent.
+Afin d'assurer la sécurité du poste il doit comprendre à minima les élément suivant :</p>
+<ul>
+<li>Accés VPN sécurisé</li>
+<li>Pare-feux</li>
+<li>Chiffrement</li>
+</ul>
+<p>Cette machine utilise la distribution <strong>ArchLinux</strong> qui en plus de m'être familiaire a de nombreux
+avantages desquels on peut citer :</p>
+<ul>
+<li>Rolling release</li>
+<li>Communautaire</li>
+<li>Basée systemd (systemd-homed inclus)</li>
+<li>Excellente documentation</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion-1"><a class="header" href="#bastion-1">Bastion</a></h1>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<p>Créer le répertoire de la machine :</p>
+<pre><code class="language-bash ignore">$ sudo mkdir /var/lib/machines/bastion
+</code></pre>
+<p>Installer ArchLinux et quelques paquets utiles :</p>
+<pre><code class="language-bash  ignore">$ sudo pacstrap -K -c /var/lib/machines/bastion/ base vim sudo man-db man-pages openssh
+</code></pre>
+<p>Première connexion, changer le mot de passe root et renseigner le nom d'hôte :</p>
+<pre><code class="language-bash ignore">$ sudo machinectl start bastion
+$ sudo machinectl shell bastion
+$ passwd
+$ hostnamectl set-hostname bastion
+$ exit
+</code></pre>
+<p>Côté hôte, limiter l'utilisation des ressources du conteneur :</p>
+<pre><code class="language-bash ignore">$ sudo systemctl set-property systemd-nspawn@bastion MemoryHigh=2G
+$ sudo systemctl set-property systemd-nspawn@bastion CPUQuota=100%
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : ArchLinux utilise le module pam <em>securetty</em> afin de limiter les connexion du
+superutilisateur. Pour que le login root fonctionne il est necéssaire d'ajouter <em>pts/1</em> au fichier
+<em>/etc/securetty</em>.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion-2"><a class="header" href="#bastion-2">Bastion</a></h1>
+<h2 id="systemd-homed"><a class="header" href="#systemd-homed">Systemd-homed</a></h2>
+<p>Systemd-homed est un service systemd qui fournit des comptes utilisateurs portables indépendants de
+la configuration système.</p>
+<p>Il met en oeuvre cette portabilité en déplaçant toutes les informations liées à l'utilisateur dans
+un emplacement de stockage, optionnellement chiffré, en créant un fichier <em>~/.identity</em> qui contient
+des informations signées à propos :</p>
+<ul>
+<li>de l'utilisateur,</li>
+<li>du mot de passe,</li>
+<li>des groupes auxquels il appartient,</li>
+<li>UID/GID
+et autres informations qui seraient généralement éclatées à travers de multiples fichiers dans <em>/</em>.</li>
+</ul>
+<p>Cette approche ne permet pas simplement la portabilité du répertoire home, mais également fournit
+une sécurité en gérant le chiffrement du home à la connexion et vérouillant le système s'il est
+suspendu.</p>
+<p>Afin de pouvoir utiliser <em>systemd-homed</em> :</p>
+<pre><code class="language-bash ignore">$ sudo machinectl shell bastion
+$ systemctl enable --now systemd-homed
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion-3"><a class="header" href="#bastion-3">Bastion</a></h1>
+<h2 id="systemd-homed-1"><a class="header" href="#systemd-homed-1">Systemd-homed</a></h2>
+<h3 id="homectl"><a class="header" href="#homectl">Homectl</a></h3>
+<p><em>homectl</em> est l'outil principal que l'on utilise pour homed. On peut créer, mettre à jour et
+inspecter des utilisateur, leurs répertoires home, et leurs fichier <em>~/.identity</em> contrôlés par le
+service <em>systemd-homed</em>.</p>
+<p>Afin de créer l'utilisateur du <em>bastion</em> :</p>
+<pre><code class="language-bash ignore">$ homectl create hugo
+</code></pre>
+<p>Cette commande va créer :</p>
+<ul>
+<li>un utilisateur,</li>
+<li>un UID libre (dans les 60001 : 60513),</li>
+<li>créer un groupe avec le même nom et un GID égal à l'UID choisi et ajouter l'utilisateur spécifié
+comme membre,</li>
+<li>renseigner le shell par défaut de l'utilisateur à <em>/bin/bash</em>.</li>
+</ul>
+<p>Le point de montage du répertoire home est mis à <em>/home/hugo</em>. Le mécanisme de stockage est choisi
+dans cet ordre :</p>
+<ol>
+<li><strong>LUKS</strong> si supporté;</li>
+<li><strong>Sous-volume</strong> si LUKS n'est pas supporté et sous-volume est supporté;</li>
+<li><strong>Répertoire</strong> si aucun de ceux-ci n'est supporté.</li>
+</ol>
+<blockquote>
+<p><strong>Remarque</strong> : le chemin de l'image pour le mécanisme LUKS est <em>/home/hugo.home</em> et le chemin du
+répertoire pour le mécanisme répertoire est <em>/home/hugo/home.dir</em>.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion-4"><a class="header" href="#bastion-4">Bastion</a></h1>
+<h2 id="systemd-homed-2"><a class="header" href="#systemd-homed-2">Systemd-homed</a></h2>
+<h3 id="stockage-luks"><a class="header" href="#stockage-luks">Stockage LUKS</a></h3>
+<p>Le mécanisme de chiffrement du home <em>LUKS</em> n'est pas supporté dans <em>systemd-nspawn</em>.</p>
+<pre><code class="language-bash ignore">$ homectl create hugo --storage=luks
+</code></pre>
+<p>Avec cette option <em>systemd-homed</em> créé un fichier auxquel il attache une interface de périphérique
+de bloc à l'aide du périphérique de boucle <em>/dev/loop-control</em>, puis chiffre le périphérique obtenu
+avec <em>LUKS</em> (back-end <em>dm-crypt</em>).</p>
+<p>Or les périphériques de blocs (et spécifiquement les périphériques de boucle) ne sont pas proprement
+virtualisés dans Linux. Les périphériques de boucle existent sur un espace de nom logique unique et
+ont un comportement qui peut être qualifié de dynamique.</p>
+<p>En effet <em>/dev/loop-control</em> permet à une application de trouver dynamiquement un périphérique libre
+et d'ajouter/supprimer des périphériques de boucle au système.</p>
+<blockquote>
+<p><strong>Remarque</strong> : On peut lier un périphérique de boucle spécifique dans le conteneur via l'option
+bind, par exemple : <em>[File] Bind=/dev/loop4</em>, mais le conteneur ne pourra jamais allouer de
+nouveaux périphériques de blocs et le conteneur n'est pas exactement le &quot;propriétaire&quot; du
+périphérique. De plus du fait que <em>sysfs</em> n'est pas virtualisé dans systemd-nspawn, les
+applications du conteneur ne peuvent pas découvrir le périphérique automatiquement.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion-5"><a class="header" href="#bastion-5">Bastion</a></h1>
+<h2 id="administration"><a class="header" href="#administration">Administration</a></h2>
+<p>Pour des raisons pratiques, l'utilisateur du bastion sera également administrateur de sa machine :</p>
+<pre><code class="language-bash ignore">$ vim /etc/sudoers
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : Ce ne sera évidemment pas le cas en condition réelle. L'utilisateur du poste n'est pas
+son administrateur système.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion-6"><a class="header" href="#bastion-6">Bastion</a></h1>
+<h2 id="configuration-3"><a class="header" href="#configuration-3">Configuration</a></h2>
+<h3 id="nspawn"><a class="header" href="#nspawn">Nspawn</a></h3>
+<p>Pour rajouter le lien ethernet virtuel pour le WAN agent, on créé le fichier
+<em>/etc/systemd/nspawn/bastion.nspawn</em> suivant:</p>
+<pre><code class="language-ini ignore">[Network]
+Private=yes
+VirtualEthernet=yes
+VirtualEthernetExtra=ve-basti_wana0:wana0
+</code></pre>
+<h3 id="réseau"><a class="header" href="#réseau">Réseau</a></h3>
+<p>L'hôte et le conteneur étant tout les deux des systèmes ArchLinux utilisant systemd-networkd, la
+configuration réseau se fera à l'aide de fichiers <em>.network</em> sur l'hôte.</p>
+<p>Afin de configurer le côté hôte du lien ethernet virtuel WAN agent, on créé le fichier
+<em>70-bastion-wana0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Name=ve-basti_wana0*
+Driver=veth
+
+[Network]
+Address=10.0.0.12/8
+LLDP=yes
+EmitLLDP=customer-bridge
+</code></pre>
+<p>Et afin de configurer le côté invité du lien WAN, on créé le fichier <em>70-bastion-ve_wana0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Host=bastion
+Virtualization=container
+Name=wana0
+
+[Network]
+Address=10.0.0.2/8
+LLDP=yes
+EmitLLDP=customer-bridge
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion-7"><a class="header" href="#bastion-7">Bastion</a></h1>
+<h2 id="wireguard-2"><a class="header" href="#wireguard-2">Wireguard</a></h2>
+<p>Installer les outils wireguard de l'espace utilisateur :</p>
+<pre><code class="language-bash ignore">$ sudo pacman -S wireguard-tools
+</code></pre>
+<p>Générer une paire de clefs (publique/privée) :</p>
+<pre><code class="language-bash ignore">$ wg genkey | (umask 0077 &amp;&amp; tee bastion.key) | wg pubkey &gt; bastion.pub
+</code></pre>
+<p>Créer une interface de type wireguard :</p>
+<pre><code class="language-bash ignore">$ sudo ip link add wg0 type wireguard
+</code></pre>
+<p>Récupérer et copier la clef publique de <em>infra</em> (optionnellement également, la clef <em>preshared</em>).
+Configurer le fichier <strong>/etc/wireguard/wg0.conf</strong> avec respectivement les clefs <em>bastion.key</em> et
+<em>infra.pub</em> :</p>
+<pre><code class="language-ini ignore">[Interface]
+Address = 172.30.18.101/24
+PrivateKey = wHHx5bOO+jxGi2h3lCN/QiXl+FIZ964ZY4R501EpMmg=
+ListenPort = 41741
+
+[Peer]
+PublicKey = gxt5G/tUgSh1W8xOUX8TvWNCHvxsEvDUEAr8hu71fTA=
+Endpoint = 10.0.0.1:41740
+AllowedIPs = 172.30.18.1/32, 172.16.18.0/24
+</code></pre>
+<p>Activer et démarrer le service <strong>wg-quick@wg0</strong> qui instancie l'accés :</p>
+<pre><code class="language-bash ignore">$ sudo systemctl enable --now wg-quick@wg0.service
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bastion-8"><a class="header" href="#bastion-8">Bastion</a></h1>
+<h2 id="nftables"><a class="header" href="#nftables">Nftables</a></h2>
+<p>Afin de sécuriser un minimum le poste Bastion on configurera <em>Netfilter</em> :</p>
+<pre><code class="language-bash ignore">$ sudo pacman -S nftables
+</code></pre>
+<p>Placer <a href="bastion//kubespawn/.fichiers/nftables.conf">ce fichier</a> dans <em>/etc/</em> et activer le service :</p>
+<pre><code class="language-bash ignore">$ sudo systemctl enable --now nftables.service
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="machine-dinfrastructure"><a class="header" href="#machine-dinfrastructure">Machine d'infrastructure</a></h1>
+<h2 id="introduction-5"><a class="header" href="#introduction-5">Introduction</a></h2>
+<p>Afin de gérer les accés administrateurs à la grappe <em>Kubernetes</em>, il est nécessaire d'instancier une
+machine d'infrastructure comprenant à minima les éléments suivants :</p>
+<ul>
+<li>Accés VPN sécurisé</li>
+<li>Pare-feux</li>
+</ul>
+<p>Renseigner le nom d'hôte :</p>
+<pre><code class="language-bash ignore">$ sudo machinectl login infra
+$ sudo hostnamectl set-hostname infra
+</code></pre>
+<p>Côté hôte, limiter l'utilisation des ressources du conteneur :</p>
+<pre><code class="language-bash ignore">$ sudo systemctl set-property systemd-nspawn@infra MemoryHigh=2G
+$ sudo systemctl set-property systemd-nspawn@infra CPUQuota=100%
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="machine-dinfrastructure-1"><a class="header" href="#machine-dinfrastructure-1">Machine d'infrastructure</a></h1>
+<h2 id="configuration-4"><a class="header" href="#configuration-4">Configuration</a></h2>
+<h3 id="nspawn-1"><a class="header" href="#nspawn-1">Nspawn</a></h3>
+<p>Pour rajouter le lien ethernet virtuel pour les réseaux admin et WAN agent, on créé le
+fichier <em>/etc/systemd/nspawn/infra.nspawn</em> suivant:</p>
+<pre><code class="language-ini ignore">[Network]
+Private=yes
+VirtualEthernet=yes
+VirtualEthernetExtra=ve-infra_admin0:admin0
+VirtualEthernetExtra=ve-infra_wana0:wana0
+</code></pre>
+<h3 id="réseau-1"><a class="header" href="#réseau-1">Réseau</a></h3>
+<p>Afin de configurer le côté hôte du lien WAN, on créé le fichier <em>70-infra-ve_wana0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Name=ve-infra_wana0*
+Driver=veth
+
+[Network]
+Address=10.0.0.11/8
+LLDP=yes
+EmitLLDP=customer-bridge
+</code></pre>
+<p>Afin de configurer le côté hôte du lien admin, on créé le fichier <em>70-infra-ve_admin0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Name=ve-infra_admin0*
+Driver=veth
+
+[Network]
+Address=172.16.18.21/24
+LLDP=yes
+EmitLLDP=customer-bridge
+</code></pre>
+<p>et afin de configurer le côté invité des liens WAN et admin, on utilise les outils <em>nmcli</em> ou
+<em>nmtui</em> :</p>
+<div class="table-wrapper"><table><thead><tr><th>Interface</th><th>IP</th></tr></thead><tbody>
+<tr><td>admin0</td><td>172.16.18.11/24</td></tr>
+<tr><td>wana0</td><td>10.0.0.1/8</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="machine-dinfrastructure-2"><a class="header" href="#machine-dinfrastructure-2">Machine d'infrastructure</a></h1>
+<h2 id="wireguard-3"><a class="header" href="#wireguard-3">Wireguard</a></h2>
+<p>Installer les outils wireguard de l'espace utilisateur :</p>
+<pre><code class="language-bash ignore">$ sudo dnf install wireguard-tools
+</code></pre>
+<p>Générer une paire de clefs (publique/privée) :</p>
+<pre><code class="language-bash ignore">$ wg genkey | (umask 0077 &amp;&amp; tee infra.key) | wg pubkey &gt; infra.pub
+</code></pre>
+<p>Créer une interface de type wireguard :</p>
+<pre><code class="language-bash ignore">$ sudo ip link add wg0 type wireguard
+</code></pre>
+<p>Récupérer et copier la clef publique de <em>bastion</em> (optionnellement également, la clef <em>preshared</em>).
+Configurer le fichier <strong>/etc/wireguard/wg0.conf</strong> avec respectivement les clefs <em>infra.key</em> et
+<em>bastion.pub</em> :</p>
+<pre><code class="language-ini ignore">[Interface]
+PrivateKey = eHGRDsCibdQw+htxJYnLy2bcJIt7ATXFnlqrD7oqzEs=
+Address = 172.30.18.1/24
+ListenPort = 41740
+
+PostUp = sysctl -w net.ipv4.ip_forward=1
+PreDown = sysctl -w net.ipv4.ip_forward=0
+
+[Peer]
+PublicKey = uq75eVp7ezfchZBgYPbp3267vzVOUf4IWBqZzV/kqhA=
+AllowedIPs = 172.30.18.101/32
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : On lie le forwarding ip à l'activation et à la désactivation de l'interface wireguard
+car il s'agit d'un accés VPN point à site <em>passerelle</em>. D'autres options de routages peuvent être
+envisagées en fonction des besoins : <em>masquerading (SNAT)</em> ou <em>port forwarding</em>.</p>
+</blockquote>
+<p>Activer et démarrer le service <strong>wg-quick@wg0</strong> qui instancie l'accés :</p>
+<pre><code class="language-bash ignore">$ sudo systemctl enable --now wg-quick@wg0.service
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="machine-dinfrastructure-3"><a class="header" href="#machine-dinfrastructure-3">Machine d'infrastructure</a></h1>
+<h2 id="shorewall"><a class="header" href="#shorewall">Shorewall</a></h2>
+<p>Shorewall est un outil de haut niveau pour configurer Netfilter.</p>
+<p>Il utilise des entrées dans un ensemble de fichiers de configuration décrivant l'état du pare-feux.
+Shorewall lit ses fichiers de configuration et configure Nefilter selon la description.</p>
+<blockquote>
+<p><strong>Remarque</strong> : Shorewall n'utilise pas le mode compatible <em>ipchains</em> mais il utilise
+avantageusement les possibilités de pistage des états de connexion Netfilter.</p>
+</blockquote>
+<p>Installer le pare-feux :</p>
+<pre><code class="language-bash ignore">$ sudo dnf install shorewall
+</code></pre>
+<h3 id="zones"><a class="header" href="#zones">Zones</a></h3>
+<p>Renseigner les zones <em>fw</em>, <em>ZA</em> et <em>ZS</em> dans le fichier <em>/etc/shorewall/zones</em> :</p>
+<div class="table-wrapper"><table><thead><tr><th>Zone</th><th>Type</th></tr></thead><tbody>
+<tr><td>fw</td><td>firewall</td></tr>
+<tr><td>ZA</td><td>ipv4</td></tr>
+<tr><td>ZS</td><td>ipv4</td></tr>
+</tbody></table>
+</div>
+<h3 id="interfaces"><a class="header" href="#interfaces">Interfaces</a></h3>
+<p>Renseigner les interfaces <em>wana0</em> <em>wg0</em> et <em>admin0</em> dans le fichier <em>/etc/shorewall/interfaces</em> :</p>
+<div class="table-wrapper"><table><thead><tr><th>Zone</th><th>Interface</th></tr></thead><tbody>
+<tr><td>ZA</td><td>wana0</td></tr>
+<tr><td>ZS</td><td>wg0</td></tr>
+<tr><td>ZS</td><td>admin0</td></tr>
+</tbody></table>
+</div>
+<h3 id="politiques-de-sécurité"><a class="header" href="#politiques-de-sécurité">Politiques de sécurité</a></h3>
+<p>Renseigner les politiques de sécurité dans le fichier <em>/etc/shorewall/policy</em> :</p>
+<div class="table-wrapper"><table><thead><tr><th>Source</th><th>Destination</th><th>Politique</th><th>LogLevel</th></tr></thead><tbody>
+<tr><td>$FW</td><td>ALL</td><td>ACCEPT</td><td></td></tr>
+<tr><td>ZS</td><td>ZA</td><td>ACCEPT</td><td></td></tr>
+<tr><td>ZA</td><td>ZS</td><td>DROP</td><td>info</td></tr>
+<tr><td>ALL</td><td>ALL</td><td>ACCEPT</td><td>info</td></tr>
+</tbody></table>
+</div>
+<h3 id="règles"><a class="header" href="#règles">Règles</a></h3>
+<p>Renseigner la règle suivante dans le fichier <em>/etc/shorewall/rules</em> :</p>
+<div class="table-wrapper"><table><thead><tr><th>Action</th><th>Source</th><th>Destination</th><th>Protocole</th><th>Dport</th></tr></thead><tbody>
+<tr><td>ACCEPT</td><td>ZA</td><td>ZS</td><td>udp</td><td>41740</td></tr>
+</tbody></table>
+</div>
+<h3 id="démarrer-et-activer-le-pare-feux"><a class="header" href="#démarrer-et-activer-le-pare-feux">Démarrer et activer le pare-feux</a></h3>
+<pre><code class="language-bash ignore">$ sudo systemctl enable --now shorewall
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cnode"><a class="header" href="#cnode">Cnode</a></h1>
+<h2 id="introduction-6"><a class="header" href="#introduction-6">Introduction</a></h2>
+<p>Le cnode est le noeud de la grappe <em>Kubernetes</em> qui porte le plan de contrôle. Il comprend à minima
+les éléments suivants :</p>
+<ul>
+<li>Kube-apiserver</li>
+<li>Etcd</li>
+<li>Kube-scheduler</li>
+<li>Kube-controller-manager</li>
+</ul>
+<p>Renseigner le nom d'hôte :</p>
+<pre><code class="language-bash ignore">$ sudo machinectl login cnode
+$ sudo hostnamectl set-hostname cnode
+</code></pre>
+<p>Côté hôte, limiter l'utilisation des ressources du conteneur :</p>
+<pre><code class="language-bash ignore">$ sudo systemctl set-property systemd-nspawn@cnode MemoryHigh=4G
+$ sudo systemctl set-property systemd-nspawn@cnode CPUQuota=200%
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cnode-1"><a class="header" href="#cnode-1">Cnode</a></h1>
+<h2 id="configuration-5"><a class="header" href="#configuration-5">Configuration</a></h2>
+<h3 id="nspawn-2"><a class="header" href="#nspawn-2">Nspawn</a></h3>
+<p>Pour rajouter le lien ethernet virtuel pour les réseaux admin et data, on créé le
+fichier <em>/etc/systemd/nspawn/cnode.nspawn</em> suivant:</p>
+<pre><code class="language-ini ignore">[Network]
+Private=yes
+VirtualEthernet=yes
+VirtualEthernetExtra=ve-cnode_admin0:admin0
+VirtualEthernetExtra=ve-cnode_data0:data0
+</code></pre>
+<h3 id="réseau-2"><a class="header" href="#réseau-2">Réseau</a></h3>
+<p>Afin de configurer le côté hôte du lien admin, on créé le fichier <em>70-cnode-ve_admin0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Name=ve-cnode_admin0*
+Driver=veth
+
+[Network]
+Address=172.16.18.22/24
+LLDP=yes
+EmitLLDP=customer-bridge
+</code></pre>
+<p>Afin de configurer le côté hôte du lien admin, on créé le fichier <em>70-cnode-ve_data0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Name=ve-cnode_data0*
+Driver=veth
+
+[Network]
+Address=172.16.20.22/24
+LLDP=yes
+EmitLLDP=customer-bridge
+</code></pre>
+<p>et afin de configurer le côté invité des liens admin et data, on utilise les outils <em>nmcli</em> ou
+<em>nmtui</em> :</p>
+<div class="table-wrapper"><table><thead><tr><th>Interface</th><th>IP</th></tr></thead><tbody>
+<tr><td>admin0</td><td>172.16.18.12/24</td></tr>
+<tr><td>data0</td><td>172.16.20.12/24</td></tr>
+</tbody></table>
+</div>
+<p>et ajouter la route vers l'accés VPN infra :</p>
+<div class="table-wrapper"><table><thead><tr><th>Destination</th><th>Saut</th></tr></thead><tbody>
+<tr><td>172.30.18.0/24</td><td>172.16.18.11</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="cnode-2"><a class="header" href="#cnode-2">Cnode</a></h1>
+<h2 id="kubernetes"><a class="header" href="#kubernetes">Kubernetes</a></h2>
+<p>Kubernetes est un système d'orchestration de conteneurs open source permettant d'automatiser le
+déploiement, la mise à l'échelle et la gestion d'applications informatiques.</p>
+<p>Beaucoup de services de cloud offrent des plateformes ou infrastructures en tant que service (PaaS,
+IaaS) basées sur Kubernetes sur lesquelles Kubernetes peut être déployé comme service fournisseur de
+plateformes.</p>
+<p>Kubernetes définit un ensemble de primitives, qui collectivement fournissent des mécanismes de
+déploiement, de maintien et de mise à l'échelle d'applications basé sur les ressources CPU, mémoire
+et autres métriques personnalisées. Kubernetes est lâchement couplé et extensible pour s'accorder à
+différentes charges de travail. Cette extensibilité est fournit en grande partie par l'API
+Kubernetes, utilisée par des composants internes ainsi que les extensions et conteneurs exécutés sur
+Kubernetes. La plateforme exerce son contrôle sur les ressources de calcul et de stockage et
+définissant ces ressources comme objets, ceux-ci pouvant par la suite être gérés comme tels.</p>
+<p>Kubernetes suit l'architecture Maître-Esclave. Les composants de Kubernetes peuvent être divisés
+entre ceux qui gèrent les noeuds individuels et ceux qui font partie du plan de contrôle.</p>
+<p>Le maître Kubernetes est l'unité principale de contrôle du cluster, il gère la charge de travail et
+dirige les communications à travers le système. Le plan de contrôle de Kubernetes consiste en divers
+composants, chacun ayant sa propre tâche, pouvant être exécuté soit sur un simple noeud maître, soit
+sur plusieurs maîtres pour des clusters à haute disponibilité. Les différents composants du plan de
+contrôle Kubernetes sont les suivants :</p>
+<ul>
+<li><strong>etcd</strong> : etcd est une base de données clef-valeur, légère, persistante et distribuée qui stocke
+de manière fiable les données de configuration du cluster, donnant une représentation de l'état
+global du cluster à l'instant t. <em>etcd</em> est un système qui favorise la cohérence à la
+disponibilité dans l'éventualité d'une partition réseau. Cette cohérence est cruciale pour
+ordonnancer correctement les services opérants. Le serveur de l'API Kubernetes utilise l'API de
+visualisation d'etcd pour surveiller le cluster et déployer des changements configuration
+critiques ou simplement restaurer n'importe quelle divergence d'état du cluster tels qu'il était
+déclaré par celui qui l'a déployé.</li>
+<li><strong>Le serveur d'API</strong> : Le serveur d'API est un composant clé qui sert l'API Kubernetes via des
+JSON en HTTP, qui fournit à la fois les interfaces internes et externes à Kubernetes. Le serveur
+d'API traite et valide les requêtes REST et met à jour l'état des objets dans etcd, de fait
+permettant aux clients de configurer les charges de travail et les conteneurs à travers les
+noeuds.</li>
+<li><strong>L'ordonnanceur</strong> : L'ordonnanceur est un composant qui, sur la base de la disponibilité
+ressource, sélectionne un noeud sur lequel s'exécute un pod non ordonnancé (entité de base géré
+par l'ordonnanceur). L'ordonnanceur suit l'usage ressource sur chacun des noeuds afin de s'assurer
+que la charge de travail n'est pas planifiée en excès de la ressource disponible. A cette fin,
+l'ordonnanceur doit connaître les conditions et disponibilités de la ressource et autres
+contraintes définies par l'utilisateur, les directives politiques telles que la qualité de
+service, les conditions d'affinité ou de non-affinité, la localisation des données etc. Le rôle de
+l'ordonnanceur est d'accorder la ressource disponible à la charge de travail demandée.</li>
+<li><strong>Le gestionnaire de contrôle</strong> : Un contrôleur est une boucle de réconciliation qui amène l'état
+courant du cluster vers l'état désiré du cluster, en communicant via le serveur d'API pour créer,
+mettre à jour et supprimer les ressources qu'il gère (pods, services, extrémités, etc.). Le
+gestionnaire de contrôle est un processus qui gère un ensemble de contrôleurs du noyau Kubernetes.
+Un type de contrôleur est un contrôleur de réplication, qui s'occupe de la réplication et de la
+mise à l'échelle en exécutant un nombre de copies de pods spécifiées à travers le cluster. Il
+s'occupe également de créer des pods de remplacement, si les noeuds sous-jacents sont en erreur.
+D'autres contrôleurs qui sont une partie du noyau Kubernetes incluent le contrôleur DaemonSet pour
+exécuter exactement un pod sur chaque machine (ou sous-ensemble de machines), et un contrôleur de
+travail pour exécuter des pods jusqu'à fin d'exécution par exemple pour des traitements batchs.
+L'ensemble des pods qu'un contrôleur gère est déterminé par l'étiquette des sélecteurs faisant
+partie de la définition du contrôleur.</li>
+</ul>
+<p>Un noeud, est une machine où des conteneurs (charge de travail) sont déployés. Chaque noeud à
+l'intérieur du cluster doit exécuter un environnement d'exécution de conteneurs tel que Docker,
+ainsi que les composants mentionnés ci-dessous, à des fins de communication avec le maître pour la
+configuration réseau de ces conteneurs.</p>
+<ul>
+<li><strong>Kubelet</strong> : Kubelet est responsable de l'état d'exécution de chaque noeud, il s'assure que tous
+les conteneurs du noeud sont sains. Il prend en charge le démarrage, l'arrêt et la maintenance des
+conteneurs d'application organisés en pods tels que l'a décidé le plan de contrôle. Kublet
+surveille l'état d'un pod, s'il n'est pas dans l'état désiré, le pod est redéployé sur le même
+noeud. Le statut du noeud est relayé sur une période de quelques secondes via des messages au
+maître. Si le maître détecte un échec de noeud, le contrôleur de réplication observe ce changement
+de statut et lance des pods sur d'autres noeuds sains.</li>
+<li><strong>Kube-proxy</strong> : Le Kube-proxy est une implémentation d'un proxy réseau et d'un répartiteur de
+charge, il prend en charge l'abstraction de service ainsi que d'autres opérations réseau. Il est
+responsable du routage du traffic vers le conteneur approprié basé sur l'adresse IP et le numéro
+de port de la requête qui arrive.</li>
+<li><strong>Environnement</strong> d'exécution de conteneur : Un conteneur réside dans un pod. Le conteneur est le
+niveau de micro-service le plus bas, qui contient l'application en cours d'exécution, les
+bibliothèques et leurs dépendances. Ils peuvent également avoir une adresse IP externe.</li>
+</ul>
+<p>L'unité d'ordonnancement de base dans Kubernetes est un pod. Un pod est un groupement de composants
+conteneurisés. Un pod consiste en un ou plusieurs conteneurs garantis de se trouver sur le même
+noeud.</p>
+<p>Chaque pod dans Kubernetes est assigné à une adresse IP unique à l'intérieur du cluster, permettant
+aux applications d'utiliser des ports sans risques de conflits. A l'intérieur du pod, chaque
+conteneur peut faire référence à chaque autre sur le localhost, mais un conteneur à l'intérieur d'un
+pod n'a aucun moyen de s'adresser directement à un autre conteneur dans un autre pod ; pour cela, il
+doit utiliser l'adresse IP du pod.</p>
+<p>Un pod peut définir un volume, tel qu'un répertoire du disque local ou un disque réseau, et
+l'exposer aux conteneurs du pod. Les pods peuvent être gérés manuellement via l'API Kubernetes, ou
+leur gestion peut être déléguée à un contrôleur. De tels volumes sont aussi la base des
+fonctionnalités Kubernetes de ConfigMaps (pour fournir un accès à la configuration à travers le
+système de fichier visible au conteneur) et Secrets (pour fournir les certificats nécessaires à
+l'accès sécurisé à des ressources distantes, en donnant uniquement aux conteneurs autorisés, ces
+certificats sur leur système de fichier visible).</p>
+<p>La fonction d'un ReplicaSet est de maintenir un ensemble stable de pods répliqués pouvant être
+exécutés à tout moment. En tant que tel, il est souvent utilisé pour garantir la disponibilité d'un
+nombre de pods identiques spécifique.</p>
+<p>Les ReplicaSets est également un mécanisme de rassemblement qui permet à Kubernetes de maintenir
+pour un pod donné un nombre d'instance défini à l'avance. La définition d'un ensemble de réplique
+utilise un sélecteur, dont l'évaluation résulte en l'évaluation de tous les pods qui lui sont
+associés.</p>
+<p>Un service Kubernetes est un ensemble de pods travaillant de concert, tel une couche d'une
+application multi-couche. L'ensemble de pods qui constitue un service sont définis par un sélecteur
+d'étiquette. Kubernetes fournit deux modes de découverte de service, en utilisant des variables
+d'environnement, ou en utilisant le DNS Kubernetes. La découverte de service assigne un adresse IP
+fixe et un nom DNS au service, et réparti la charge du traffic en utilisant un DNS round-robin pour
+les connexions réseaux à cette adresse IP au milieu des pods vérifiant ce sélecteur (même si des
+erreurs peuvent amener les pods à passer d'une machine à une autre). Par défaut un service est
+exposé à l'intérieur d'un cluster (par exemple les pods back-end peuvent être groupés en service,
+recevant des requêtes de la part des pods front-end réparties entre eux), mais un service peut
+également être exposé en dehors d'un cluster (par exemple pour que les clients puissent accéder aux
+pods front-end).</p>
+<p>Les systèmes de fichier dans le conteneur Kubernetes fournit par défaut un stockage éphémère. Cela
+signifie qu'un redémarrage du pod effacera toute les données sur ces conteneurs, et par conséquent,
+cette forme de stockage est, excepté dans le cas d'applications triviales, relativement limitante.
+Un volume Kubernetes fournit un stockage permanent qui existe pendant la durée d'existence du pod
+lui-même. Ce stockage peut également être utilisé comme disque partagé pour les conteneurs du pod.
+Ces volumes sont montés à des points de montages spécifique à l'intérieur du conteneur définit par
+la configuration du pod, et ne peuvent être montés aux autres volumes ou liés à ceux-ci. Le même
+volume peut être monté à différent endroits dans l'arbre du système de fichiers par différents
+conteneurs.</p>
+<p>Kubernetes fournit un partitionnement des ressources qu'il gère dans des ensembles disjoints appelés
+espace de noms. L'usage de ces espaces de noms est destiné aux environnements possédant un grand
+nombre d'utilisateurs répartis dans plusieurs équipes, ou projets, ou même à séparer des
+environnements tels que le développement, l'intégration et la production.</p>
+<p>Un problème applicatif thématique est de décider ou stocker et gérer les informations de
+configuration, dont certaines peuvent contenir des données sensibles. Les données de configuration
+peuvent être relativement hétérogènes comme de petits fichiers de configurations individuels ou de
+grands fichiers de configuration ou des documents JSON/XML. Kubernetes permet de traiter ce genre de
+problème à l'aide de deux mécanismes assez proches : &quot;configmaps&quot; et &quot;secrets&quot;, les deux permettent
+des changements de configuration sans nécessiter la reconstruction de l'application. Les données de
+configmaps et de secrets sont accessibles à chaque objets de l'instance de l'application auxquels
+ils ont été liés au déploiement. Un secret et/ou un configmaps sont uniquement envoyé à un noeud si
+un pod sur ce noeud le demande. Kubernetes le gardera en mémoire sur ce noeud. Un fois que le pod
+qui dépend du secret ou de la configmap est supprimé, la copie en mémoire de tous les secrets et
+configmaps liés est également supprimée. La donnée est accessible au pod de deux façons : en tant
+que variables d'environnements (que Kubernetes créé lors du démarrage du pod) ou disponible dans le
+système de fichier du conteneur visible dans le pod.</p>
+<p>La donnée elle même est stockée sur le maître qui est hautement sécurisé et dont personne ne doit
+avoir d'accès de connexion. La plus grande différence entre un secret et une configmap est que le
+contenu de la donnée dans un secret est encodé en base 64. Il peut également être chiffré. Les
+secrets sont souvent utilisés pour stocker des certificats, des mots de passe et des clefs ssh.</p>
+<p>Il est très facile de réaliser une mise à l'échelle d'applications sans conditions d'état : Il
+suffit d'ajouter plus de pods d'exécution - quelque chose que Kubernetes fait très bien. Les charges
+de travail avec condition d'état sont bien plus difficiles, de fait que l'état doit être conservé si
+un pod est redémarré, et si l'application doit être redimensionnée alors l'état devra possiblement
+être redistribué. Les bases de données sont des exemples de charge de travail avec condition d'état.
+Lors d'une exécution en mode haute disponibilité, beaucoup de bases de données ont la notion
+d'instance primaire et d'instance(s) secondaires. Dans ce cas la notion d'ordonnancement d'instances
+est important.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wnode"><a class="header" href="#wnode">Wnode</a></h1>
+<h2 id="introduction-7"><a class="header" href="#introduction-7">Introduction</a></h2>
+<p>Le wnode est le noeud de la grappe <em>Kubernetes</em> qui execute les pods. Il comprend à minima les
+éléments suivants :</p>
+<ul>
+<li>Podman</li>
+<li>Crun</li>
+<li>Kubelet</li>
+<li>Kube-proxy</li>
+<li>CRI-O</li>
+</ul>
+<p>Renseigner le nom d'hôte :</p>
+<pre><code class="language-bash ignore">$ sudo machinectl login wnode
+$ sudo hostnamectl set-hostname wnode
+</code></pre>
+<p>Côté hôte, limiter l'utilisation des ressources du conteneur :</p>
+<pre><code class="language-bash ignore">$ sudo systemctl set-property systemd-nspawn@wnode MemoryHigh=2G
+$ sudo systemctl set-property systemd-nspawn@wnode CPUQuota=100%
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wnode-1"><a class="header" href="#wnode-1">Wnode</a></h1>
+<h2 id="configuration-6"><a class="header" href="#configuration-6">Configuration</a></h2>
+<h3 id="nspawn-3"><a class="header" href="#nspawn-3">Nspawn</a></h3>
+<p>Pour rajouter le lien ethernet virtuel pour les réseaux admin et data, on créé le
+fichier <em>/etc/systemd/nspawn/wnode.nspawn</em> suivant:</p>
+<pre><code class="language-ini ignore">[Network]
+Private=yes
+VirtualEthernet=yes
+VirtualEthernetExtra=ve-wnode_admin0:admin0
+VirtualEthernetExtra=ve-wnode_data0:data0
+</code></pre>
+<h3 id="réseau-3"><a class="header" href="#réseau-3">Réseau</a></h3>
+<p>Afin de configurer le côté hôte du lien admin, on créé le fichier <em>70-wnode-ve_admin0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Name=ve-wnode_admin0*
+Driver=veth
+
+[Network]
+Address=172.16.18.23/24
+LLDP=yes
+EmitLLDP=customer-bridge
+</code></pre>
+<p>Afin de configurer le côté hôte du lien data, on créé le fichier <em>70-wnode-ve_data0.network</em> :</p>
+<pre><code class="language-ini ignore">[Match]
+Name=ve-wnode_data0*
+Driver=veth
+
+[Network]
+Address=172.16.20.23/24
+LLDP=yes
+EmitLLDP=customer-bridge
+</code></pre>
+<p>et afin de configurer le côté invité des liens admin et data, on utilise les outils <em>nmcli</em> ou
+<em>nmtui</em> :</p>
+<div class="table-wrapper"><table><thead><tr><th>Interface</th><th>IP</th></tr></thead><tbody>
+<tr><td>admin0</td><td>172.16.18.13/24</td></tr>
+<tr><td>data0</td><td>172.16.20.13/24</td></tr>
+</tbody></table>
+</div>
+<p>et ajouter la route vers l'accés VPN infra :</p>
+<div class="table-wrapper"><table><thead><tr><th>Destination</th><th>Saut</th></tr></thead><tbody>
+<tr><td>172.30.18.0/24</td><td>172.16.18.11</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="wnode-2"><a class="header" href="#wnode-2">Wnode</a></h1>
+<h2 id="podman-crun-et-ubi"><a class="header" href="#podman-crun-et-ubi">Podman Crun et UBI</a></h2>
+<p>Installation des outils de conteneurisation :</p>
+<pre><code class="language-bash ignore">$ sudo dnf module install container-tools
+$ sudo dnf install podman crun
+</code></pre>
+<p>Récupérer l'image du conteneur UBI :</p>
+<pre><code class="language-bash ignore">$ sudo podman pull registry.access.redhat.com/ubi8/ubi
+</code></pre>
+<p>Dans le fichier <em>/etc/containers/containers.conf</em> changer la runtime :</p>
+<pre><code class="language-bash ignore">runtime=crun
+#runtime=runc
+</code></pre>
+<p>Exécuter le conteneur nommé <em>monUBI</em> :</p>
+<pre><code class="language-bash ignore">$ sudo podman run --privileged --name=monUBI -it registry.access.redhat.com/ubi8/ubi /bin/bash
+</code></pre>
+<ul>
+<li>L'option <em>-i</em> créé une session interactive. Sans l'option <em>-t</em>, le shell reste ouvert, mais on ne
+peut rien écrire au shell.</li>
+<li>L'option <em>-t</em> ouvre une session de terminal. Sans l'option <em>-i</em> le shell s'ouvre et quitte
+immédiatement.</li>
+</ul>
+<p>A l'intérieur du conteneur, installer l'ensemble d'utilitaires systèmes <em>procps-ng</em> (<em>ps</em>, <em>top</em>,
+<em>uptime</em>, etc.) :</p>
+<pre><code class="language-bash ignore">$ dnf install procps-ng
+</code></pre>
+<p>Puis lister les processus courants :</p>
+<pre><code class="language-bash ignore">$ ps -ef
+</code></pre>
+<p>Quitter pour retourner dans l'hôte et lister les conteneurs :</p>
+<pre><code class="language-bash ignore">$ exit
+$ sudo podman ps
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wnode-3"><a class="header" href="#wnode-3">Wnode</a></h1>
+<h2 id="cri-o"><a class="header" href="#cri-o">CRI-O</a></h2>
+<p><img src="wnode//kubespawn/.images/crio.png" alt="CRI-O" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="open-vswitch-1"><a class="header" href="#open-vswitch-1">Open vSwitch</a></h1>
+<h2 id="introduction-8"><a class="header" href="#introduction-8">Introduction</a></h2>
+<p>Open vSwitch est un switch logiciel multicouche. Il est construit de manière à permettre une
+automatisation massive des opérations réseaux à l'aide d'extensions.</p>
+<p>Afin d'installer et d'activer au démarrage le switch virtuel :</p>
+<pre><code class="language-bash ignore">$ sudo pacman -S openvswitch
+$ sudo systemctl enable --now openvswitch
+</code></pre>
+<blockquote>
+<p>Remarque : Open vSwitch fonctionne à l'aide de 2 services <strong>ovs-vswitchd</strong> pour le daemon et
+<strong>ovsdb-server</strong> pour le serveur de base de donnée du switch.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="création-des-ponts-et-connexion-des-interfaces"><a class="header" href="#création-des-ponts-et-connexion-des-interfaces">Création des ponts et connexion des interfaces</a></h2>
+<p>Créer les ponts <em>br-admin</em>, <em>br-data</em> et <em>br-wana</em> :</p>
+<pre><code class="language-bash ignore">$ sudo ovs-vsctl add-br br-admin
+$ sudo ovs-vsctl add-br br-data
+$ sudo ovs-vsctl add-br br-wana
+</code></pre>
+<p>Connecter les interfaces au port <em>br-admin</em> :</p>
+<pre><code class="language-bash ignore">$ sudo ovs-vsctl add-port br-admin ve-cnode_admin0
+$ sudo ovs-vsctl add-port br-admin ve-wnode_admin0
+$ sudo ovs-vsctl add-port br-admin ve-infra_admin0
+</code></pre>
+<p>Connecter les interfaces au port <em>br-data</em> :</p>
+<pre><code class="language-bash ignore">$ sudo ovs-vsctl add-port br-admin ve-cnode_data0
+$ sudo ovs-vsctl add-port br-admin ve-wnode_data0
+</code></pre>
+<p>Connecter les interfaces au port <em>br-wana</em> :</p>
+<pre><code class="language-bash ignore">$ sudo ovs-vsctl add-port br-admin ve-basti_wana0
+$ sudo ovs-vsctl add-port br-admin ve-infra_wana0
+</code></pre>
+<p>Afficher l'état du switch suite à ses modification :</p>
+<pre><code class="language-bash ignore">$ sudo ovs-vsctl show
+</code></pre>
+<p>Qui doit renvoyer l'état ci-dessous :</p>
+<p><img src="open_vswitch//kubespawn/.images/etat.png" alt="État du switch" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="activation-des-conteneurs"><a class="header" href="#activation-des-conteneurs">Activation des conteneurs</a></h2>
+<p>Suite à la connexion des machines, il peut être souhaitable d'activer leurs unités de services afin
+qu'elles se lancent au démarrage de l'hôte :</p>
+<pre><code class="language-bash ignore">sudo systemctl enable systemd-nspawn@bastion
+sudo systemctl enable systemd-nspawn@infra
+sudo systemctl enable systemd-nspawn@cnode
+sudo systemctl enable systemd-nspawn@wnode
+</code></pre>
+<blockquote>
+<p><strong>Remarque</strong> : Les unités de service <em>systemd-nspawn@</em> font partie de la cible spéciale systemd
+<em>machines.target</em> (pour en savoir plus sur les cibles spéciales fournies <em>man systemd.special</em>).
+Il est possible (mais pas forcément nécessaire) de modifier les dépendances fonctionnelles
+(<em>Wants=</em> et <em>Requires=</em>) et d'ordonnancement (<em>After</em>=) du service <em>ovs-vswitchd</em> et copiant le
+fichier d'unité dans <em>/etc/systemd/system/</em> afin de le lier à la cible <em>machines.target</em> (pour en
+savoir plus sur la rédaction de fichiers d'unités <em>man systemd.unit</em>).</p>
+</blockquote>
+<p>La plateforme est maintenant opérationnelle.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
